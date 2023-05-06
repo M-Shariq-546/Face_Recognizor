@@ -1,3 +1,4 @@
+#Importing Libraries
 import cv2
 from imutils import face_utils
 import numpy as np
@@ -16,15 +17,15 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import face_recognition
 
-#Set name of new user
+#Set name of new user to use app
 currentUser = raw_input("Enter name of current user : ")
 model = keras.models.load_model(currentUser + '.model')
 
-#Importing Haar cascade and DLIB's facial landmarks detector
+#Importing Haar cascade and DLIB's facial landmarks detector to trained data
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
-# Start video capture (webcam)
+# Start video capture (webcam) tested verified
 video = cv2.VideoCapture(0)
 
 while(True):
@@ -39,7 +40,7 @@ while(True):
 
 	for(x, y, w, h) in faces :
 		pillowImage = Image.fromarray(frame[y:y+h, x:x+w])
-		#Resizing dimensions
+		#Resizing dimensions of screen of image and video
 		resizedHeight = 300
 		resizedWidth = 300
 		######
@@ -51,7 +52,7 @@ while(True):
 
 		if(not len(encoded) == 0):
 
-			# Keras neural net
+			# Keras neural net for datasets training
 			npratios = []
 			npratios.append(encoded[0])
 			npratios = np.array(npratios)
@@ -79,3 +80,5 @@ while(True):
 
 video.release()
 cv2.destroyAllWindows()
+
+#Ending of main program file
