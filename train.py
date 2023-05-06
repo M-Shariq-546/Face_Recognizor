@@ -1,3 +1,4 @@
+#Importing Libraries
 import cv2
 from imutils import face_utils
 import numpy as np
@@ -22,9 +23,10 @@ predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 # Start video capture (webcam)
 video = cv2.VideoCapture(0)
 
-#Set name of new user
+#Set name of new user to use app
 currentUser = raw_input("Enter name of current user : ")
 
+#Empty tiple to add values
 masterValues = []
 
 while(True) :
@@ -41,7 +43,7 @@ while(True) :
 		#Cropping and resizing face area
 		pillowImage = Image.fromarray(frame[y:y+h, x:x+w])
 
-		#Resizing dimensions
+		#Resizing dimensions of screen
 		resizedHeight = 300
 		resizedWidth = 300
 		
